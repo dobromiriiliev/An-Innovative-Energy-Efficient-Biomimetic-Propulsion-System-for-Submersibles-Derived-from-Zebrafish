@@ -1,12 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import queue
-
-# Size of the simulation grid
-nx = 20
-ny = 20
-nz = 20
+from queue import PriorityQueue
+import time
 
 # Constants
 dt = 0.01  # Time step
@@ -14,66 +10,67 @@ densityWater = 1000.0
 viscosity = 0.1
 
 # Function to initialize a shape in the velocity field
-def initializeShape_single_point(i, j, k):
+def initialize_shape_single_point(i, j, k, nx, ny, nz):
     x = i / nx
     y = j / ny
     z = k / nz
 
-    velocityFieldX = np.sin(densityWater * dt * viscosity * np.pi * x)
-    velocityFieldY = np.cos(densityWater * dt * viscosity * np.pi * y)
-    velocityFieldZ = np.sin(densityWater * dt * viscosity * np.pi * z)
+    velocity_field_x = np.sin(densityWater * dt * viscosity * np.pi * x)
+    velocity_field_y = np.cos(densityWater * dt * viscosity * np.pi * y)
+    velocity_field_z = np.sin(densityWater * dt * viscosity * np.pi * z)
 
-    return velocityFieldX, velocityFieldY, velocityFieldZ
+    return velocity_field_x, velocity_field_y, velocity_field_z
 
-# Worker function to initialize shape in parallel
-def worker(q):
-    while True:
-        try:
-            i, j, k = q.get(block=False)
-            result = initializeShape_single_point(i, j, k)
-            q.task_done()
-            yield result
-        except queue.Empty:
-            break
+# Function to initialize velocity fields in parallel
+def initialize_velocity_fields():
+    results = PriorityQueue()
+    for i in range(nx):
+        for j in range(ny):
+            for k in range(nz):
+                result = initialize_shape_single_point(i, j, k, nx, ny, nz)
+                priority = np.random.random()  # Assign random priority
+                results.put((priority, result))
+    return results
 
-# Initialize velocity fields using queue system
-q = queue.Queue()
-
-# Put tasks into the queue
-for i in range(nx):
-    for j in range(ny):
-        for k in range(nz):
-            q.put((i, j, k))
+# Size of the simulation grid
+nx = 10
+ny = 10
+nz = 10
 
 # Initialize velocity fields
-results = list(worker(q))
-
-# Reshape results to match grid dimensions
-velocityFieldX = np.zeros((nx, ny, nz))
-velocityFieldY = np.zeros((nx, ny, nz))
-velocityFieldZ = np.zeros((nx, ny, nz))
-
-for i in range(nx):
-    for j in range(ny):
-        for k in range(nz):
-            index = i * ny * nz + j * nz + k
-            vx, vy, vz = results[index]
-            velocityFieldX[i, j, k] = vx
-            velocityFieldY[i, j, k] = vy
-            velocityFieldZ[i, j, k] = vz
+start_time = time.time()
+results = initialize_velocity_fields()
+print("Initialization time:", time.time() - start_time)
 
 # Create meshgrid
 x = np.arange(0, nx)
 y = np.arange(0, ny)
 z = np.arange(0, nz)
-X, Y, Z = np.meshgrid(x, y, z)
+X, Y, Z = np.meshgrid(x, y, z, indexing='ij')
+
+# Create arrays to store velocity field data
+velocity_field_x = np.zeros((nx, ny, nz))
+velocity_field_y = np.zeros((nx, ny, nz))
+velocity_field_z = np.zeros((nx, ny, nz))
+
+# Extract data from priority queue and assign to velocity field arrays
+for i in range(nx):
+    for j in range(ny):
+        for k in range(nz):
+            _, (vx, vy, vz) = results.get()
+            velocity_field_x[i, j, k] = vx
+            velocity_field_y[i, j, k] = vy
+            velocity_field_z[i, j, k] = vz
 
 # Create quiver plot
 fig = plt.figure(figsize=(10, 7))
 ax = fig.add_subplot(111, projection='3d')
-ax.quiver(X, Y, Z, velocityFieldX, velocityFieldY, velocityFieldZ, length=0.1, normalize=True)
+ax.quiver(X, Y, Z, velocity_field_x, velocity_field_y, velocity_field_z, length=0.1, normalize=True)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
+ax.set_xlim(0, nx)
+ax.set_ylim(0, ny)
+ax.set_zlim(0, nz)
 ax.set_title('Velocity Field')
 plt.show()
