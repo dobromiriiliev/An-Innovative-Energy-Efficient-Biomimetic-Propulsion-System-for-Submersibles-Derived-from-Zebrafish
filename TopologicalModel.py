@@ -46,38 +46,6 @@ def initialize_velocity_fields_parallel(nx, ny, nz):
         results = pool.map(compute_velocity_field, args_list)
         return results
 
-# Function to apply no-slip boundary conditions
-def apply_boundary_conditions(velocity_field_x, velocity_field_y, velocity_field_z):
-    # No-slip boundary conditions
-    velocity_field_x[0,:,:] = velocity_field_y[0,:,:] = velocity_field_z[0,:,:] = 0  # Boundary at x=0
-    velocity_field_x[-1,:,:] = velocity_field_y[-1,:,:] = velocity_field_z[-1,:,:] = 0  # Boundary at x=nx-1
-    velocity_field_x[:,0,:] = velocity_field_y[:,0,:] = velocity_field_z[:,0,:] = 0  # Boundary at y=0
-    velocity_field_x[:,-1,:] = velocity_field_y[:,-1,:] = velocity_field_z[:,-1,:] = 0  # Boundary at y=ny-1
-    velocity_field_x[:,:,0] = velocity_field_y[:,:,0] = velocity_field_z[:,:,0] = 0  # Boundary at z=0
-    velocity_field_x[:,:,-1] = velocity_field_y[:,:,-1] = velocity_field_z[:,:,-1] = 0  # Boundary at z=nz-1
-    return velocity_field_x, velocity_field_y, velocity_field_z
-
-# Function to solve pressure using Gauss-Seidel method
-def solve_pressure(pressure_field, velocity_field_x, velocity_field_y, velocity_field_z):
-    # Pressure solver using Gauss-Seidel method
-    rhs = densityWater / dt * (np.gradient(velocity_field_x, axis=0) + np.gradient(velocity_field_y, axis=1) + np.gradient(velocity_field_z, axis=2))
-    for _ in range(10):  # Example iterations for convergence
-        for i in range(1, pressure_field.shape[0] - 1):
-            for j in range(1, pressure_field.shape[1] - 1):
-                for k in range(1, pressure_field.shape[2] - 1):
-                    pressure_field[i, j, k] = (pressure_field[i+1, j, k] + pressure_field[i-1, j, k] +
-                                               pressure_field[i, j+1, k] + pressure_field[i, j-1, k] +
-                                               pressure_field[i, j, k+1] + pressure_field[i, j, k-1] -
-                                               rhs[i, j, k]) / 6  # Gauss-Seidel update
-    return pressure_field
-
-# Function to apply fluid interactions using bounce-back scheme
-def apply_fluid_interactions(velocity_field_x, velocity_field_y, velocity_field_z):
-    # Bounce-back scheme for fluid-solid interactions
-    # Assuming solid surface at z=0
-    velocity_field_z[0,:,:] = -velocity_field_z[1,:,:]  # Flipping the velocity component normal to the solid surface
-    return velocity_field_x, velocity_field_y, velocity_field_z
-
 if __name__ == "__main__":
     # Size of the simulation grid
     nx = 100
@@ -99,27 +67,25 @@ if __name__ == "__main__":
     velocity_field_x = np.zeros((nx, ny, nz))
     velocity_field_y = np.zeros((nx, ny, nz))
     velocity_field_z = np.zeros((nx, ny, nz))
-    pressure_field = np.zeros((nx, ny, nz))
 
-    # Apply boundary conditions
-    velocity_field_x, velocity_field_y, velocity_field_z = apply_boundary_conditions(velocity_field_x, velocity_field_y, velocity_field_z)
-
-    # Main time loop
-    while velocity_fields:
-        _, i, j, k, pressure, vx, vy, vz = heapq.heappop(velocity_fields)
-
-        # Update velocity fields
+    # Populate velocity field arrays
+    for _, i, j, k, _, vx, vy, vz in velocity_fields:
         velocity_field_x[i, j, k] = vx
         velocity_field_y[i, j, k] = vy
         velocity_field_z[i, j, k] = vz
 
-        # Apply fluid interactions
-        velocity_field_x, velocity_field_y, velocity_field_z = apply_fluid_interactions(velocity_field_x, velocity_field_y, velocity_field_z)
+    # Apply no-slip boundary conditions
+    velocity_field_x[0,:,:] = velocity_field_y[0,:,:] = velocity_field_z[0,:,:] = 0
+    velocity_field_x[-1,:,:] = velocity_field_y[-1,:,:] = velocity_field_z[-1,:,:] = 0
+    velocity_field_x[:,0,:] = velocity_field_y[:,0,:] = velocity_field_z[:,0,:] = 0
+    velocity_field_x[:,-1,:] = velocity_field_y[:,-1,:] = velocity_field_z[:,-1,:] = 0
+    velocity_field_x[:,:,0] = velocity_field_y[:,:,0] = velocity_field_z[:,:,0] = 0
+    velocity_field_x[:,:,-1] = velocity_field_y[:,:,-1] = velocity_field_z[:,:,-1] = 0
 
-    # Solve pressure using Gauss-Seidel method
-    pressure_field = solve_pressure(pressure_field, velocity_field_x, velocity_field_y, velocity_field_z)
+    # Apply fluid interactions using bounce-back scheme
+    velocity_field_z[0,:,:] = -velocity_field_z[1,:,:]
 
-    # Create quiver plot for velocity vector field
+    # Create quiver plot for velocity vector field using parallel processing
     fig = plt.figure(figsize=(12, 9))
     ax = fig.add_subplot(111, projection='3d')
     stride = 5  # Adjust the stride to control density of arrows
