@@ -57,15 +57,18 @@ def apply_boundary_conditions(velocity_field_x, velocity_field_y, velocity_field
     velocity_field_x[:,:,-1] = velocity_field_y[:,:,-1] = velocity_field_z[:,:,-1] = 0  # Boundary at z=nz-1
     return velocity_field_x, velocity_field_y, velocity_field_z
 
-# Function to solve pressure using simple iterative solver
+# Function to solve pressure using Gauss-Seidel method
 def solve_pressure(pressure_field, velocity_field_x, velocity_field_y, velocity_field_z):
-    # Pressure solver
+    # Pressure solver using Gauss-Seidel method
     rhs = densityWater / dt * (np.gradient(velocity_field_x, axis=0) + np.gradient(velocity_field_y, axis=1) + np.gradient(velocity_field_z, axis=2))
     for _ in range(10):  # Example iterations for convergence
-        pressure_field = np.roll(pressure_field, 1, axis=0) + np.roll(pressure_field, -1, axis=0) + \
-                         np.roll(pressure_field, 1, axis=1) + np.roll(pressure_field, -1, axis=1) + \
-                         np.roll(pressure_field, 1, axis=2) + np.roll(pressure_field, -1, axis=2) - rhs
-        pressure_field /= 6  # Averaging
+        for i in range(1, pressure_field.shape[0] - 1):
+            for j in range(1, pressure_field.shape[1] - 1):
+                for k in range(1, pressure_field.shape[2] - 1):
+                    pressure_field[i, j, k] = (pressure_field[i+1, j, k] + pressure_field[i-1, j, k] +
+                                               pressure_field[i, j+1, k] + pressure_field[i, j-1, k] +
+                                               pressure_field[i, j, k+1] + pressure_field[i, j, k-1] -
+                                               rhs[i, j, k]) / 6  # Gauss-Seidel update
     return pressure_field
 
 # Function to apply fluid interactions using bounce-back scheme
@@ -77,7 +80,7 @@ def apply_fluid_interactions(velocity_field_x, velocity_field_y, velocity_field_
 
 if __name__ == "__main__":
     # Size of the simulation grid
-    nx = 200
+    nx = 100
     ny = 100
     nz = 100
 
@@ -101,9 +104,6 @@ if __name__ == "__main__":
     # Apply boundary conditions
     velocity_field_x, velocity_field_y, velocity_field_z = apply_boundary_conditions(velocity_field_x, velocity_field_y, velocity_field_z)
 
-    # Create a priority queue based on computational complexity
-    heapq.heapify(velocity_fields)
-
     # Main time loop
     while velocity_fields:
         _, i, j, k, pressure, vx, vy, vz = heapq.heappop(velocity_fields)
@@ -115,6 +115,9 @@ if __name__ == "__main__":
 
         # Apply fluid interactions
         velocity_field_x, velocity_field_y, velocity_field_z = apply_fluid_interactions(velocity_field_x, velocity_field_y, velocity_field_z)
+
+    # Solve pressure using Gauss-Seidel method
+    pressure_field = solve_pressure(pressure_field, velocity_field_x, velocity_field_y, velocity_field_z)
 
     # Create quiver plot for velocity vector field
     fig = plt.figure(figsize=(12, 9))
