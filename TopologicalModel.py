@@ -5,6 +5,7 @@ import time
 import heapq
 from multiprocessing import Pool
 
+
 # Constants
 dt = 0.01  # Time step
 densityWater = 1000.0

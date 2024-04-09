@@ -1,0 +1,21 @@
+% Step 1: Call Python Script
+system('python /Users/dobromiriliev/Documents/GitHub/Undulatory-Swimming-A-Topological-and-Computational-Model/TopologicalModel.py');
+
+% Step 2: Read Velocity Fields
+load('velocity_fields.mat'); % Load velocity fields data
+
+% Step 3: Calculate Dot Product
+dot_product_result = dot(velocity_field_1, velocity_field_2);
+
+% Step 4: Generate Surface Line
+% Assuming you have a function find_surface_line() implemented
+surface_line = find_surface_line(dot_product_result);
+
+% Step 5: Iterate Across 3 Dimensions
+% Assuming you have a function for iteration, iterate across the dimensions
+% For example:
+% [X, Y, Z] = ndgrid(1:size(surface_line, 1), 1:size(surface_line, 2), 1:size(surface_line, 3));
+% Iterate through X, Y, Z and modify the surface line accordingly
+
+% Step 6: Export to VRML
+vrmlwrite('output_model.vrml', surface_line);
