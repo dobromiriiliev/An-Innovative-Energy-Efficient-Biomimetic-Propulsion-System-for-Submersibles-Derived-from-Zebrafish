@@ -14,9 +14,9 @@ evragov_memory = [263, 271, 285, 258, 277, 260, 279, 268, 262, 289, 295, 278, 26
 
 # Plotting time graph
 plt.figure(figsize=(10, 6))
-plt.plot(our_time, label='Ours')
-plt.plot(hycom_time, label='NOAA HYCOM')
-plt.plot(evragov_time, label='Evragov')
+plt.plot(our_time, label='Ours', color='blue')
+plt.plot(hycom_time, label='NOAA HYCOM', color='green')
+plt.plot(evragov_time, label='Evragov', color='red')
 plt.xlabel('Iterations')
 plt.ylabel('Time (s)')
 plt.title('Time to run each program for 1 million velocity vectors')
@@ -28,9 +28,9 @@ plt.show()
 
 # Plotting memory allocation graph
 plt.figure(figsize=(10, 6))
-plt.plot(ours_memory, label='Ours')
-plt.plot(hycom_memory, label='NOAA HYCOM')
-plt.plot(evragov_memory, label='Evragov')
+plt.plot(ours_memory, label='Ours', color ='blue')
+plt.plot(hycom_memory, label='NOAA HYCOM', color ='green')
+plt.plot(evragov_memory, label='Evragov', color= 'red')
 plt.xlabel('Iterations')
 plt.ylabel('Memory Allocation (MB)')
 plt.title('Memory allocation for each model')
