@@ -1,25 +1,22 @@
+#!/bin/bash
 
-# Path to the program 
-PROGRAM=/Users/dobromiriliev/Documents/GitHub/Undulatory-Swimming-A-Topological-and-Computational-Model/TopologicalModel.py
+# Define the path to the Python script
+PYTHON_SCRIPT="/Users/dobromiriliev/Documents/GitHub/Undulatory-Swimming-A-Topological-and-Computational-Model/TopologicalModel.py"
 
-# Number of times to run the program
-NUM_RUNS=50
+# Array to store initialization times
+initialization_times=()
 
-# Array to store execution times
-declare -a execution_times
-
-# Run the program NUM_RUNS times
-for ((i=1; i<=$NUM_RUNS; i++))
+# Run the Python script 50 times
+for ((i=1; i<=50; i++))
 do
-    # Capture the output of the time command
-    output=$(time -p $PROGRAM 2>&1)
-    
-    # Extract the real time (execution time) from the output
-    execution_time=$(echo "$output" | grep -oP "(?<=real\s)\d+(\.\d+)?" | tail -n 1)
-    
-    # Store execution time in the array
-    execution_times+=($execution_time)
-    
-    echo "Run $i: Execution time = $execution_time seconds"
+    # Execute the Python script and capture output
+    output=$(python3 "$PYTHON_SCRIPT" | grep "Initialization time:")
+    # Extract initialization time from output
+    init_time=$(echo "$output" | awk '{print $3}')
+    # Add initialization time to array
+    initialization_times+=("$init_time")
 done
 
+# Print the initialization times array
+echo "Initialization times:"
+echo "${initialization_times[@]}"
