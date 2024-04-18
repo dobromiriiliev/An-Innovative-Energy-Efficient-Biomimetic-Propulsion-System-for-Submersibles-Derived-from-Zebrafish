@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }mount\PYG{+w}{ }/dev/sda3\PYG{+w}{ }/mnt/pi
+sudo\PYG{+w}{ }mount\PYG{+w}{ }\PYGZhy{}t\PYG{+w}{ }proc\PYG{+w}{ }/proc\PYG{+w}{ }/mnt/pi/proc
+sudo\PYG{+w}{ }mount\PYG{+w}{ }\PYGZhy{}t\PYG{+w}{ }sysfs\PYG{+w}{ }/sys\PYG{+w}{ }/mnt/pi/sys
+sudo\PYG{+w}{ }mount\PYG{+w}{ }\PYGZhy{}o\PYG{+w}{ }\PYG{n+nb}{bind}\PYG{+w}{ }/dev\PYG{+w}{ }/mnt/pi/dev
+\end{Verbatim}

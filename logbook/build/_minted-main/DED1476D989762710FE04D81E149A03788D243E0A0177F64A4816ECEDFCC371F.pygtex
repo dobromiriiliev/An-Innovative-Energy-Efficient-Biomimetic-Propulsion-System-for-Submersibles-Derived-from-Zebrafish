@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }fdisk\PYG{+w}{ }/dev/sda\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} launches a TUI program for managing and formatting existing partitions}
+sudo\PYG{+w}{ }mkfs.vfat\PYG{+w}{ }/dev/sda1\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} create the boot sector}
+mkdir\PYG{+w}{ }boot
+sudo\PYG{+w}{ }mount\PYG{+w}{ }/dev/sda1\PYG{+w}{ }boot\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} mount the boot sector to a folder named boot}
+sudo\PYG{+w}{ }mkfs.ext4\PYG{+w}{ }/dev/sda2\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} create an ext4 file system}
+mkdir\PYG{+w}{ }root
+sudo\PYG{+w}{ }mount\PYG{+w}{ }/dev/sda2\PYG{+w}{ }root\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} mount ext4 file system}
+\end{Verbatim}

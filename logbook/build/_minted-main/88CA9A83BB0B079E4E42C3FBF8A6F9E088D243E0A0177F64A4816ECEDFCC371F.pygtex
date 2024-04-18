@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{c+c1}{\PYGZsh{} Path to the program}
+\PYG{+w}{    }\PYG{n+nv}{PROGRAM}\PYG{o}{=}/Users/dobromiriliev/Documents/GitHub/Undulatory\PYGZhy{}Swimming\PYGZhy{}A\PYGZhy{}Topological\PYGZhy{}and\PYGZhy{}Computational\PYGZhy{}Model/TopologicalModel.py
+
+\PYG{+w}{    }\PYG{c+c1}{\PYGZsh{} Number of times to run the program}
+\PYG{+w}{    }\PYG{n+nv}{NUM\PYGZus{}RUNS}\PYG{o}{=}\PYG{l+m}{50}
+
+\PYG{+w}{    }\PYG{c+c1}{\PYGZsh{} Array to store execution times}
+\PYG{+w}{    }\PYG{n+nb}{declare}\PYG{+w}{ }\PYGZhy{}a\PYG{+w}{ }execution\PYGZus{}times
+
+\PYG{+w}{    }\PYG{c+c1}{\PYGZsh{} Run the program NUM\PYGZus{}RUNS times}
+\PYG{+w}{    }\PYG{k}{for}\PYG{+w}{ }\PYG{o}{((}\PYG{n+nv}{i}\PYG{o}{=}\PYG{l+m}{1}\PYG{p}{;}\PYG{+w}{ }i\PYGZlt{}\PYG{o}{=}\PYG{n+nv}{\PYGZdl{}NUM\PYGZus{}RUNS}\PYG{p}{;}\PYG{+w}{ }i++\PYG{o}{))}
+\PYG{+w}{    }\PYG{k}{do}
+\PYG{+w}{        }\PYG{c+c1}{\PYGZsh{} Capture the output of the time command}
+\PYG{+w}{        }\PYG{n+nv}{output}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}\PYG{n+nb}{time}\PYG{+w}{ }\PYGZhy{}p\PYG{+w}{ }\PYG{n+nv}{\PYGZdl{}PROGRAM}\PYG{+w}{ }\PYG{l+m}{2}\PYGZgt{}\PYG{p}{\PYGZam{}}\PYG{l+m}{1}\PYG{k}{)}
+
+\PYG{+w}{        }\PYG{c+c1}{\PYGZsh{} Extract the real time (execution time) from the output}
+\PYG{+w}{        }\PYG{n+nv}{execution\PYGZus{}time}\PYG{o}{=}\PYG{k}{\PYGZdl{}(}\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}}\PYG{n+nv}{\PYGZdl{}output}\PYG{l+s+s2}{\PYGZdq{}}\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }grep\PYG{+w}{ }\PYGZhy{}oP\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}(?\PYGZlt{}=real\PYGZbs{}s)\PYGZbs{}d+(\PYGZbs{}.\PYGZbs{}d+)?\PYGZdq{}}\PYG{+w}{ }\PYG{p}{|}\PYG{+w}{ }tail\PYG{+w}{ }\PYGZhy{}n\PYG{+w}{ }\PYG{l+m}{1}\PYG{k}{)}
+
+\PYG{+w}{        }\PYG{c+c1}{\PYGZsh{} Store execution time in the array}
+\PYG{+w}{        }\PYG{n+nv}{execution\PYGZus{}times}\PYG{o}{+=(}\PYG{n+nv}{\PYGZdl{}execution\PYGZus{}time}\PYG{o}{)}
+
+\PYG{+w}{        }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Run }\PYG{n+nv}{\PYGZdl{}i}\PYG{l+s+s2}{: Execution time = }\PYG{n+nv}{\PYGZdl{}execution\PYGZus{}time}\PYG{l+s+s2}{ seconds\PYGZdq{}}
+\PYG{+w}{    }\PYG{k}{done}
+\end{Verbatim}

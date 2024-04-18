@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }chroot\PYG{+w}{ }/mnt/pi
+sudo\PYG{+w}{ }chroot\PYG{+w}{ }/mnt/pi\PYG{+w}{ }/bin/bash
+sudo\PYG{+w}{ }chroot\PYG{+w}{ }/mnt/pi\PYG{+w}{ }/usr/bin/bash
+sudo\PYG{+w}{ }arch\PYGZhy{}chroot
+\end{Verbatim}

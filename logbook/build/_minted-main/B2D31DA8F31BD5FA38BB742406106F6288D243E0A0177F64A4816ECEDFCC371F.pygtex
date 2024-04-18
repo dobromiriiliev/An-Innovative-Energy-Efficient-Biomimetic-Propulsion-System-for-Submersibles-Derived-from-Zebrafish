@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }systemctl\PYG{+w}{ }\PYG{n+nb}{enable}\PYG{+w}{ }sshd
+sudo\PYG{+w}{ }systemctl\PYG{+w}{ }start\PYG{+w}{ }sshd
+\end{Verbatim}

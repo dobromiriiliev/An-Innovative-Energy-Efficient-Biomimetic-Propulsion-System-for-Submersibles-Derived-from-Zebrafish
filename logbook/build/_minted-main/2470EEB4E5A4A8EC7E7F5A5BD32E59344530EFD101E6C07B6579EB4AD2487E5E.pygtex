@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZpc{} Step 1: Call Python Script}
+\PYG{n+nb}{system}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}python /Users/dobromiriliev/Documents/GitHub/Undulatory\PYGZhy{}Swimming\PYGZhy{}A\PYGZhy{}Topological\PYGZhy{}and\PYGZhy{}Computational\PYGZhy{}Model/TopologicalModel.py\PYGZsq{}}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{} Step 2: Read Velocity Fields}
+\PYG{n+nb}{load}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}velocity\PYGZus{}fields.mat\PYGZsq{}}\PYG{p}{);}\PYG{+w}{ }\PYG{c}{\PYGZpc{} Load velocity fields data}
+
+\PYG{c}{\PYGZpc{} Step 3: Calculate Dot Product}
+\PYG{n}{dot\PYGZus{}product\PYGZus{}result}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n+nb}{dot}\PYG{p}{(}\PYG{n}{velocity\PYGZus{}field\PYGZus{}1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{velocity\PYGZus{}field\PYGZus{}2}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{} Step 4: Generate Surface Line}
+\PYG{c}{\PYGZpc{} Assuming you have a function find\PYGZus{}surface\PYGZus{}line() implemented}
+\PYG{n}{surface\PYGZus{}line}\PYG{+w}{ }\PYG{p}{=}\PYG{+w}{ }\PYG{n}{find\PYGZus{}surface\PYGZus{}line}\PYG{p}{(}\PYG{n}{dot\PYGZus{}product\PYGZus{}result}\PYG{p}{);}
+
+\PYG{c}{\PYGZpc{} Step 5: Iterate Across 3 Dimensions}
+\PYG{c}{\PYGZpc{} Assuming you have a function for iteration, iterate across the dimensions}
+\PYG{c}{\PYGZpc{} For example:}
+\PYG{c}{\PYGZpc{} [X, Y, Z] = ndgrid(1:size(surface\PYGZus{}line, 1), 1:size(surface\PYGZus{}line, 2), 1:size(surface\PYGZus{}line, 3));}
+\PYG{c}{\PYGZpc{} Iterate through X, Y, Z and modify the surface line accordingly}
+
+\PYG{c}{\PYGZpc{} Step 6: Export to VRML}
+\PYG{n}{vrmlwrite}\PYG{p}{(}\PYG{l+s}{\PYGZsq{}output\PYGZus{}model.vrml\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{surface\PYGZus{}line}\PYG{p}{);}
+\end{Verbatim}

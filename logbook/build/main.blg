@@ -1,0 +1,23 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'build/main.blg'
+[44] biber:340> INFO - === Fri Apr 12, 2024, 05:58:09
+[54] Biber.pm:419> INFO - Reading 'build/main.bcf'
+[98] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[111] Biber.pm:4419> INFO - Processing section 0
+[118] Biber.pm:4610> INFO - Looking for bibtex file 'cite.bib' for section 0
+[119] bibtex.pm:1713> INFO - LaTeX decoding ...
+[122] bibtex.pm:1519> INFO - Found BibTeX data source 'cite.bib'
+[182] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[183] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[183] Biber.pm:4239> INFO - Sorting list 'nyt/apasortcite//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[183] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[195] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[195] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[195] Biber.pm:4239> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[195] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[203] bbl.pm:660> INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
+[210] bbl.pm:763> INFO - Output to build/main.bbl
+[210] Biber.pm:131> WARN - BibTeX subsystem: /tmp/biber_tmp_vSXm/347c261ec4135a5723bef5c751f5078f_48835.utf8, line 6, warning: undefined macro "december"
+[210] Biber.pm:131> WARN - BibTeX subsystem: /tmp/biber_tmp_vSXm/347c261ec4135a5723bef5c751f5078f_48835.utf8, line 32, warning: undefined macro "july"
+[210] Biber.pm:131> WARN - BibTeX subsystem: /tmp/biber_tmp_vSXm/347c261ec4135a5723bef5c751f5078f_48835.utf8, line 42, warning: undefined macro "october"
+[210] Biber.pm:133> INFO - WARNINGS: 3

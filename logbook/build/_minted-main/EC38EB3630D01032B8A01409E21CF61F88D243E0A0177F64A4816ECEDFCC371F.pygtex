@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+ssh\PYGZhy{}copy\PYGZhy{}id\PYG{+w}{ }root@archlinux\PYGZhy{}mini
+ssh\PYG{+w}{ }root@archlinux\PYGZhy{}mini\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} shouldn\PYGZsq{}t prompt a password}
+\PYG{n+nb}{pwd}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} should be in the root user\PYGZsq{}s home directory (/root)}
+\end{Verbatim}

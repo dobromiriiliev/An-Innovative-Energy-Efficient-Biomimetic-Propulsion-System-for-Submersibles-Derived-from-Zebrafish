@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }mount\PYG{+w}{ }/dev/sda2\PYG{+w}{ }arm\PYGZus{}mountpoint
+\PYG{n+nb}{cd}\PYG{+w}{ }arm\PYGZus{}mountpoint
+sudo\PYG{+w}{ }chroot\PYG{+w}{ }.\PYG{+w}{ }bin/bash
+sudo\PYG{+w}{ }mount\PYG{+w}{ }\PYGZhy{}t\PYG{+w}{ }proc\PYG{+w}{ }proc\PYG{+w}{ }/proc
+\end{Verbatim}

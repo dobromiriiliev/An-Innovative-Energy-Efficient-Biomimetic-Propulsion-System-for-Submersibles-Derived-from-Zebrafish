@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }pacman\PYG{+w}{ }\PYGZhy{}S\PYG{+w}{ }networkmanager\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} helper package to configure network connections}
+sudo\PYG{+w}{ }nmtui
+\end{Verbatim}

@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+wget\PYG{+w}{ }http://os.archlinuxarm.org/os/ArchLinuxARM\PYGZhy{}rpi\PYGZhy{}armv7\PYGZhy{}latest.tar.gz
+bsdtar\PYG{+w}{ }\PYGZhy{}xpf\PYG{+w}{ }ArchLinuxARM\PYGZhy{}rpi\PYGZhy{}armv7\PYGZhy{}latest.tar.gz\PYG{+w}{ }\PYGZhy{}C\PYG{+w}{ }root
+sync
+\end{Verbatim}
