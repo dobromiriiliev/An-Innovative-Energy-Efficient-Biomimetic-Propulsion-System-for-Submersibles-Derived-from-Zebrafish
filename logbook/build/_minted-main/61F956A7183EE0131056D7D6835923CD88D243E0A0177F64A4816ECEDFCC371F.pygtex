@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }umount\PYG{+w}{ }/run/media/anish/firmware
+sudo\PYG{+w}{ }umount\PYG{+w}{ }/run/media/anish/boot
+sudo\PYG{+w}{ }umount\PYG{+w}{ }/run/media/anish/general\PYGZus{}storage
+\end{Verbatim}

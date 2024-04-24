@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{        }\PYG{c+c1}{\PYGZsh{}!/bin/bash}
+
+\PYG{+w}{        }\PYG{c+c1}{\PYGZsh{} Path to the memory analysis tool}
+\PYG{+w}{        }\PYG{n+nv}{MEMORY\PYGZus{}TOOL}\PYG{o}{=}/Users/dobromiriliev/Documents/GitHub/Undulatory\PYGZhy{}Swimming\PYGZhy{}A\PYGZhy{}Topological\PYGZhy{}and\PYGZhy{}Computational\PYGZhy{}Model/TopologicalModel.py
+
+\PYG{+w}{        }\PYG{c+c1}{\PYGZsh{} Path to the program}
+\PYG{+w}{        }\PYG{n+nv}{PROGRAM}\PYG{o}{=}/Users/dobromiriliev/Documents/GitHub/Undulatory\PYGZhy{}Swimming\PYGZhy{}A\PYGZhy{}Topological\PYGZhy{}and\PYGZhy{}Computational\PYGZhy{}Model/TopologicalModel.py
+
+\PYG{+w}{        }\PYG{c+c1}{\PYGZsh{} Loop 50 times}
+\PYG{+w}{        }\PYG{k}{for}\PYG{+w}{ }\PYG{o}{((}\PYG{n+nv}{i}\PYG{o}{=}\PYG{l+m}{1}\PYG{p}{;}\PYG{+w}{ }i\PYGZlt{}\PYG{o}{=}\PYG{l+m}{50}\PYG{p}{;}\PYG{+w}{ }i++\PYG{o}{))}
+\PYG{+w}{        }\PYG{k}{do}
+\PYG{+w}{            }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Running analysis }\PYG{n+nv}{\PYGZdl{}i}\PYG{l+s+s2}{\PYGZdq{}}
+\PYG{+w}{            }memray\PYG{+w}{ }run\PYG{+w}{ }/usr/bin/python3\PYG{+w}{ }/Users/dobromiriliev/Documents/GitHub/Undulatory\PYGZhy{}Swimming\PYGZhy{}A\PYGZhy{}Topological\PYGZhy{}and\PYGZhy{}Computational\PYGZhy{}Model/TopologicalModel.py
+\PYG{+w}{            }\PYG{n+nb}{echo}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZdq{}}
+\PYG{+w}{        }\PYG{k}{done}
+\end{Verbatim}

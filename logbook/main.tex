@@ -1,0 +1,305 @@
+\documentclass{article}
+
+% Title sec
+\usepackage{titlesec}
+
+% Multicol
+\usepackage{multicol}
+
+% Figure wrapping
+\usepackage{wrapfig}
+
+% Hanging indent
+\usepackage{hanging}
+
+% color
+\usepackage{xcolor}
+\definecolor{LightGray}{gray}{0.9}
+% APA Citation
+\usepackage[
+  style           = apa,
+  citestyle       = authoryear,
+  sorting         = nyt,
+  sortcites       = true,
+  autocite        = inline,
+  citetracker     = false,
+  maxbibnames     = 99,
+  maxcitenames    = 2,
+  backend         = biber,
+  isbn            = false,
+  doi             = true,
+  urldate         = short,
+  backend         = biber,
+  defernumbers    = true
+]{biblatex}
+
+\DeclareBibliographyCategory{printcite}
+\newcommand{\printcite}[1]{%
+  \addtocategory{printcite}{#1}%
+  \defbibcheck{key#1}{
+    \iffieldequalstr{entrykey}{#1}
+    {}
+  {\skipentry}}%
+  \printbibliography[heading=none,check=key#1]%
+}
+\addbibresource{cite.bib}
+
+% Provide support on formatting SI Unit
+\usepackage{siunitx}
+\sisetup{per-mode=fraction}
+
+% Math package
+\usepackage{amsmath}
+\renewcommand{\frac}{\dfrac}
+
+\newcounter{source}
+\newcommand{\sourcemeta}[3]{\subsection{Student Researcher} #1 %
+  \subsection{Type} #2 %
+\subsection{Citation} \printcite{#3}}
+
+\newcommand{\source}[3]{\stepcounter{source} %
+  \section{Source \#\thesource} %
+\sourcemeta{#1}{#2}{#3}}
+
+% Customized reflection entry
+\newcounter{reflection}
+\newcommand{\reflection}[2]{\stepcounter{reflection} %
+\section*{Reflection \#\thereflection}
+  %\noindent Log what you have done, what you have discovered, what you have learned, what are your next steps\ldots 
+
+\paragraph{Date} #1
+
+  \vspace*{-0.5cm}
+\paragraph{Initials} #2}
+
+% Customized research entry
+\newcounter{research}
+\newcommand{\research}[2]{\stepcounter{research} %
+\section*{Source \#\theresearch}
+  %\noindent Log what you have done, what you have discovered, what you have learned, what are your next steps\ldots 
+
+\paragraph{Student Researcher} #1
+
+  \vspace*{-0.5cm}
+\paragraph{Type of Source} #2}
+
+% Customized reference
+\usepackage[hidelinks]{hyperref}
+
+% Better typesetting
+\usepackage{microtype}
+
+% Menukeys
+\usepackage[os=win]{menukeys}
+
+% Verbatim
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment{MetaVerbatim}{Verbatim}{}
+
+% Table
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{makecell}
+\newcolumntype{b}{>{\centering\arraybackslash}X}
+\newcolumntype{s}{>{\hsize=.4\hsize\centering}X}
+
+% Float
+\usepackage{newfloat}
+
+% 1.5 line spacing
+\usepackage{setspace}
+\setstretch{2.0}
+
+% Subfigure
+\usepackage{subcaption}
+\usepackage{caption}
+
+% Finer geometry
+\usepackage{geometry}
+\geometry{a4paper}
+
+% Define some constants
+\renewcommand{\title}{Undulatory Swimming:\\ A Topological and Computational Model}
+
+% Define field input, i.e., box
+\usepackage[most]{tcolorbox}
+\newenvironment{field}{\begin{tcolorbox}[%
+    enhanced, 
+    breakable, 
+    colback = white, colframe = black,
+    sharp corners,
+    boxrule = 0pt, bottomrule = 1pt, toprule = 1pt,
+    leftrule = 0.5pt, rightrule = 0.5pt
+]{}}{\end{tcolorbox}}
+
+% Hanging indent
+\usepackage{hanging}
+\usepackage[outputdir=build]{minted} % syntax highlighting
+\usepackage{longtable, booktabs}
+
+% Enhanced list
+\usepackage{enumitem}
+\setitemize{noitemsep}
+\setenumerate{noitemsep}
+
+% Reset section number within part
+\usepackage{chngcntr}
+\counterwithin*{section}{part}
+
+% Footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf[FR]{\hyperlink{toc}{Return to Table of Contents}}
+
+% Glossary acronym
+\usepackage[acronym]{glossaries}
+\makenoidxglossaries
+% dof
+\newacronym{dof}{DoF}{degrees of freedom}
+% ghp
+\newacronym{ghp}{GHP}{Governor's Honors Program}
+% rpi
+\newacronym{rpi}{RPI}{Raspberry Pi}
+% gpio
+\newacronym{gpio}{GPIO}{General Purpose Input/Output}
+% udp
+\newacronym{udp}{UDP}{User Datagram Protocol}
+% asr
+\newacronym{asr}{ASR}{Automatic Speech Recognition}
+% ml
+\newacronym{ml}{ML}{Machine Learning}
+% asl
+\newacronym{asl}{ASL}{American Sign Language}
+% gosa
+\newacronym{gosa}{GOSA}{Georgia Office of Student Achievement}
+% cad
+\newacronym{cad}{CAD}{computer-aided design}
+% sd
+\newacronym{sd}{SD}{speaker diarization}
+% vad
+\newacronym{vad}{VAD}{voice activation detection}
+% stt
+\newacronym{stt}{STT}{speech-to-text}
+% mvp
+\newacronym{mvp}{MVP}{minimum viable product}
+% cs
+\newacronym{cs}{CS}{computer science}
+% Table of contents title change
+\renewcommand{\contentsname}{Table of Contents}
+
+% Part and Subpart only
+\setcounter{tocdepth}{-1}
+
+\begin{document}
+\begin{titlepage}
+  \centering
+  \vspace*{1in}
+  \begin{tikzpicture}[overlay,remember picture]
+    \node[anchor=center, opacity=0.15, xshift=2cm, yshift=2cm] at (current page.center) {\includegraphics[width=\paperwidth]{media/cad.png}};
+  \end{tikzpicture}
+  {\fontsize{56pt}{2\baselineskip}\selectfont \bfseries
+  \title}
+  \vfill
+
+  \Large
+  Gwinnett School of Math, Science, and Technology\\
+  Lawrenceville, Georgia
+
+  \vspace{0.5in}
+  \setstretch{1.15}\selectfont
+
+  \vspace{1em}
+  \textbf{Team Leader}\\ Dobromir Iliev
+
+  \vspace{1em}
+  \textbf{Team Members}\\ Anish Goyal \& Ricardo Guardado
+
+  \vspace{1em}
+  \textbf{12 April 2024}
+\end{titlepage}
+\tableofcontents
+\newpage
+
+%\include{directions-and-tips}
+\include{brainstorming}
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\part{Research}
+\input{research}
+\newpage
+
+\part{Reflections}
+\input{reflection}
+
+\newpage
+
+\part{Required Forms}
+
+\textbf{The required forms for this project are:}
+
+\begin{itemize}
+  \item GSEF Participation Agreement
+  \item Official GSEF Abstract Form
+  \item Checklist for Adult Sponsor [Form 1]
+  \item Checklist for Adult Sponsor [Form 1a]
+  \item Research Plan/Project Summary
+  \item Approval [Form 1B]
+\end{itemize}
+
+\textbf{They can be found on the following pages.}
+
+\part{Research Plan}
+\includegraphics[width=\textwidth]{media/image6}
+\newpage
+\includegraphics[width=\textwidth]{media/image9}
+\newpage
+\includegraphics[width=\textwidth]{media/image10}
+\newpage
+\includegraphics[width=\textwidth]{media/image28}
+
+\part{Risk Assessment Form}
+\includegraphics[width=\textwidth, height=1.2\textwidth]{media/image17.png}
+
+\newpage
+
+\part{Student Checklist}
+\includegraphics[width=\textwidth]{media/image41.png}
+
+\newpage
+
+\part{Research Question/Goal}
+
+\textbf{What are you trying to accomplish?}
+
+The rationale for the project is that by incorporating models for synaptic activity and a model you can create a more energy efficient system. Zebrafish are meant to be in homeostasis, therefore biomimicry based upon their movement is likely to be more energy efficient. Additionally pre existing research showcases how the computational fluid dynamic model is efficient in solid state structures, therefore, there is precedent in the model working for a robotic model in aquatics. The unique challenges and conditions of the ocean can be represented with  the model.
+
+\newpage 
+
+\part{Hypothesis}
+
+\textbf{Include your independent and dependent variables AND justification for your hypothesis. Engineering projects also need a hypothesis because they must test their concepts. Include a separate null hypothesis.}
+
+Experimental hypothesis: The biomimetic propulsion system and topological model will exhibit statistically significant differences in energy expenditure.
+
+Null Hypothesis: The biomimetic propulsion system and topological model does not differ in efficiency compared to the traditional propulsion system.
+
+\newpage
+
+\part{Data}
+\newpage
+
+\part{Graphs}
+\newpage
+
+\part{Statistical Analysis}
+\newpage
+
+\part{Photo Documentation}
+\newpage
+
+% print bibliography
+\nocite{*}
+\printbibliography
+
+\end{document} 
