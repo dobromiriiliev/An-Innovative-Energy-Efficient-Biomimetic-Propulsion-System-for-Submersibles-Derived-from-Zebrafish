@@ -1,5 +1,5 @@
 % Step 1: Call Python Script
-system('python /Users/dobromiriliev/Documents/GitHub/Undulatory-Swimming-A-Topological-and-Computational-Model/TopologicalModel.py');
+system('python TopologicalModel.py');
 
 % Step 2: Read Velocity Fields
 load('velocity_fields.mat'); % Load velocity fields data

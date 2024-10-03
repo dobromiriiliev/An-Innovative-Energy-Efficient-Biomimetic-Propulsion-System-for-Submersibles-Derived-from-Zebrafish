@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the path to the Python script
-PYTHON_SCRIPT="/Users/dobromiriliev/Documents/GitHub/Undulatory-Swimming-A-Topological-and-Computational-Model/TopologicalModel.py"
+PYTHON_SCRIPT="TopologicalModel.py"
 
 # Array to store initialization times
 initialization_times=()
