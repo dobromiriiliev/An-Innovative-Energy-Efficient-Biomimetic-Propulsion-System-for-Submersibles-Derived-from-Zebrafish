@@ -7,7 +7,7 @@
 ## Authors
 
 - Dobromir Iliev @dobromiriiliev
-- Ricardo Guardado @RicardoGuardado
+- Ricardo Guardado @RicardoG2005
 - Anish Goyal @anishgoyal1108
 
 ## Overview
