@@ -6,9 +6,9 @@
 
 ## Authors
 
-- Dobromir Iliev @dobromiriiliev
-- Ricardo Guardado @RicardoG2005
-- Anish Goyal @anishgoyal1108
+- Dobromir Iliev [@dobromiriiliev](https://github.com/dobromiriiliev)
+- Ricardo Guardado [@RicardoG2005](https://github.com/RicardoG2005)
+- Anish Goyal [@anishgoyal1108](https://github.com/anishgoyal1108)
 
 ## Overview
 
