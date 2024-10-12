@@ -1,4 +1,4 @@
-# Undulatory Swimming: A Topological and Computational Model
+# An Innovative, Energy-Efficient Biomimetic Propulsion System for Submersibles Derived from Zebrafish Electrocardiogram Analysis
 
 <p align="center">
 <img src="logbook/media/cad.png" width="50%">
