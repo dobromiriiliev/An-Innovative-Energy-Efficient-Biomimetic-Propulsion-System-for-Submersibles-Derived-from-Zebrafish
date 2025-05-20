@@ -13,7 +13,7 @@ def readSynapticDataFromFile(filename):
         rospy.logerr(f"Unable to open file: {filename}, Error: {str(e)}")
 
 def synapticCallback(msg):
-    synapticValue = readSynapticDataFromFile("/home/dobrevs/.vscode/Undulatory Swimming/ROS.ipynb")
+    synapticValue = readSynapticDataFromFile("SynapticModel.ipynb")
     motorSpeed = synapticValue
 
     motorPub = rospy.Publisher('/motor_speed', Float64, queue_size=1)
